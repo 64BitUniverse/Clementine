@@ -8,6 +8,7 @@
 *.exe
 *.pyd
 build/
+bin/
 3rdparty/libprojectm/config.inp
 3rdparty/libprojectm/libprojectM.pc
 CMakeLists.txt.user
@@ -45,3 +46,5 @@ src/translations/translations.pot
 *.DS_Store
 .vscode
 *.kdev4
+ext/libclementine-tagreader/*.pb.cc
+ext/libclementine-tagreader/*.pb.h
