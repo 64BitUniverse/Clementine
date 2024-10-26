@@ -48,3 +48,7 @@ src/translations/translations.pot
 *.kdev4
 ext/libclementine-tagreader/*.pb.cc
 ext/libclementine-tagreader/*.pb.h
+*.code-workspace
+error.txt
+3rdparty/libprojectm.old
+3rdparty/libprojectm.new
