@@ -25,9 +25,9 @@
 #include "ui_visualisationselector.h"
 
 #ifdef USE_SYSTEM_PROJECTM
-#include <libprojectM/projectM.hpp>
+#include <libprojectM/projectM.h>
 #else
-#include "projectM.hpp"
+#include "projectM.h"
 #endif
 
 VisualisationSelector::VisualisationSelector(QWidget* parent)

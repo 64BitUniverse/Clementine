@@ -64,8 +64,9 @@
 #include "core/utilities.h"
 #include "engines/enginebase.h"
 #include "qtsingleapplication.h"
-#include "qtsinglecoreapplication.h"
+//#include "qtsinglecoreapplication.h"
 #include "smartplaylists/generator.h"
+#include "singleapplication/RunGuard.h"
 #include "tagreadermessages.pb.h"
 #include "ui/iconloader.h"
 #include "ui/mainwindow.h"
@@ -291,29 +292,16 @@ int main(int argc, char* argv[]) {
     // Clementine running without needing an X server.
     // This MUST be done before parsing the commandline options so QTextCodec
     // gets the right system locale for filenames.
-    QtSingleCoreApplication a(argc, argv);
-    CheckPortable();
-    crash_reporting.SetApplicationPath(a.applicationFilePath());
+    
+    RunGuard guard("Ogiewoogiewoogie");
+    if(!guard.tryToRun())
+      return 0;
 
     // Parse commandline options - need to do this before starting the
     // full QApplication so it works without an X server
     if (!options.Parse()) return 1;
     logging::SetLevels(options.log_levels());
 
-    if (a.isRunning()) {
-      if (options.is_empty()) {
-        qLog(Info)
-            << "Clementine is already running - activating existing window";
-      }
-
-      QByteArray serializedOptions = options.Serialize();
-      if (a.sendMessage(serializedOptions, 5000)) {
-        qLog(Info) << "Options found, sent message to running instance";
-        return 0;
-      }
-      // Couldn't send the message so start anyway
-    }
-  }
 
   // Output the version, so when people attach log output to bug reports they
   // don't have to tell us which version they're using.

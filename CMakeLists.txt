@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(clementine)
 
-cmake_policy(SET CMP0053 OLD)
-
-
 include(CheckCXXCompilerFlag)
 include(FindPkgConfig)
 include(cmake/C++11Compat.cmake)
@@ -318,13 +315,16 @@ if (APPLE AND USE_BUNDLE AND NOT USE_BUNDLE_DIR)
   set(USE_BUNDLE_DIR "../PlugIns")
 endif()
 
+
+
 # Remove GLU and GL from the link line - they're not really required
 # and don't exist on my mingw toolchain
 list(REMOVE_ITEM QT_LIBRARIES "-lGLU -lGL")
 
 option(USE_SYSTEM_PROJECTM "Don't set this option unless your system projectM library has been compiled with the Clementine patches in 3rdparty" OFF)
-option(BUNDLE_PROJECTM_PRESETS "Install Clementine's own copies of libprojectm presets - disable this if you want to use a system package instead" ON)
-
+option(BUNDLE_PROJECTM_PRESETS "Install Clementine's own copies of libprojectm presets - disable this if you want to use a system package instead" OFF)
+pkg_check_modules(LIBPROJECTM libprojectM)
+#[[
 if(HAVE_VISUALISATIONS)
   # When/if upstream accepts our patches then these options can be used to link
   # to system installed projectM instead.
@@ -336,8 +336,8 @@ if(HAVE_VISUALISATIONS)
     set(LIBPROJECTM_LIBRARIES projectM)
   endif(USE_SYSTEM_PROJECTM)
 endif(HAVE_VISUALISATIONS)
-
-
+]]
+#[[
 # Build our copy of QSqlLiteDriver.
 # We do this because we can't guarantee that the driver shipped with Qt exposes the
 # raw sqlite3_ functions required for FTS support. This way we know that those symbols
@@ -345,6 +345,7 @@ endif(HAVE_VISUALISATIONS)
 # Qt driver.
 add_subdirectory(3rdparty/qsqlite)
 include_directories("3rdparty/qsqlite")
+]]
 
 # When/if upstream accepts our patches then these options can be used to link
 # to system installed qtsingleapplication instead.

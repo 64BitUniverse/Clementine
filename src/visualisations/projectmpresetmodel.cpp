@@ -21,9 +21,9 @@
 #include "projectmvisualisation.h"
 
 #ifdef USE_SYSTEM_PROJECTM
-#include <libprojectM/projectM.hpp>
+#include <libprojectM/projectM.h>
 #else
-#include "projectM.hpp"
+#include "3rdparty/libprojectm/include/projectM-4/projectM.h"
 #endif
 
 #include <QDir>
