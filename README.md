@@ -40,7 +40,7 @@ Get the code (if you haven't already):
 Compile and install:
 
     cd bin
-    cmake ..
+    cmake -DCMAKE_PREFIX_PATH=3rdparty/libprojectm ..
     make -j$(nproc)
     sudo make install
 

@@ -1,4 +1,3 @@
-
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverloaded-virtual -Wall -Wno-sign-compare -Wno-deprecated-declarations -Wno-unused-local-typedefs -Wno-unused-private-field -Wno-unknown-warning-option")
 
@@ -1277,7 +1276,7 @@ link_directories(
 )
 
 if(HAVE_VISUALISATIONS)
-  target_link_libraries(clementine_lib ${LIBPROJECTM_LIBRARIES})
+  target_link_libraries(clementine_lib libprojectM::projectM)
 endif(HAVE_VISUALISATIONS)
 
 if(HAVE_LIBLASTFM)
@@ -1367,9 +1366,6 @@ if (UNIX AND NOT APPLE)
     target_link_libraries(clementine_lib ${X11_X11_LIB} ${CMAKE_DL_LIBS})
   endif ()
 endif ()
-
-add_dependencies(clementine_lib qtsingleapplication)
-
 
 ###############################################################################
 

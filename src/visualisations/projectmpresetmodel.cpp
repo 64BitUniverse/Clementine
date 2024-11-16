@@ -23,7 +23,7 @@
 #ifdef USE_SYSTEM_PROJECTM
 #include <libprojectM/projectM.h>
 #else
-#include "3rdparty/libprojectm/include/projectM-4/projectM.h"
+#include "projectM-4/projectM.h"
 #endif
 
 #include <QDir>

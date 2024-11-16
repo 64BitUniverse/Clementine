@@ -41,7 +41,7 @@
 #ifdef USE_SYSTEM_PROJECTM
 #include <libprojectM/projectM.h>
 #else
-#include "projectM.h"
+#include "projectM-4/projectM.h"
 #endif
 
 #ifdef Q_OS_MAC
@@ -105,6 +105,9 @@ void ProjectMVisualisation::InitProjectM() {
   // to give it a dummy font even though we won't use it.
   temporary_font_.reset(QTemporaryFile::createLocalFile(":blank.ttf"));
   const QString font_path = temporary_font_->fileName();
+
+  projectm_handle projectMHandle = projectm_create();
+
 
   // Create projectM settings
   projectM::Settings s;
